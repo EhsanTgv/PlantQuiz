@@ -37,8 +37,8 @@ class MainActivity : AppCompatActivity() {
             super.onPreExecute()
         }
 
-        override fun doInBackground(vararg params: String?): List<Plant> {
-
+        override fun doInBackground(vararg params: String?): List<Plant>? {
+            return null
         }
 
         override fun onPostExecute(result: List<Plant>?) {
