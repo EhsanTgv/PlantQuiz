@@ -11,6 +11,8 @@ class Plant(
     id: Int = 0
 ) {
 
+    constructor() : this("", "", "", "", "", "", 0, 0)
+
     private var _plantName: String? = null
 
     var plantName: String?
