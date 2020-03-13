@@ -15,6 +15,7 @@ import kotlinx.android.synthetic.main.content_main.*
 
 class MainActivity : AppCompatActivity() {
     private val openCameraButtonRequestId = 1234
+    private val openPhotoGalleryButtonRequestId = 1235
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -25,6 +26,14 @@ class MainActivity : AppCompatActivity() {
             val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
             startActivityForResult(cameraIntent, openCameraButtonRequestId)
         }
+
+        openPhotoGalleryButton.setOnClickListener {
+            val galleryIntent = Intent(
+                Intent.ACTION_PICK,
+                MediaStore.Images.Media.EXTERNAL_CONTENT_URI
+            )
+            startActivityForResult(galleryIntent, openPhotoGalleryButtonRequestId)
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -33,6 +42,14 @@ class MainActivity : AppCompatActivity() {
             if (resultCode == Activity.RESULT_OK) {
                 val imageData = data!!.extras!!.get("data") as Bitmap
                 imageView.setImageBitmap(imageData)
+            }
+        }
+
+        if (requestCode == openPhotoGalleryButtonRequestId) {
+            if (resultCode == Activity.RESULT_OK) {
+                val contentURI = data!!.data
+                val bitmap = MediaStore.Images.Media.getBitmap(this.contentResolver, contentURI)
+                imageView.setImageBitmap(bitmap)
             }
         }
     }
