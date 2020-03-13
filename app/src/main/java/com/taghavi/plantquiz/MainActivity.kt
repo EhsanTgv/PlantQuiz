@@ -1,6 +1,8 @@
 package com.taghavi.plantquiz
 
+import android.app.Activity
 import android.content.Intent
+import android.graphics.Bitmap
 import android.os.AsyncTask
 import android.os.Bundle
 import android.provider.MediaStore
@@ -22,6 +24,16 @@ class MainActivity : AppCompatActivity() {
         openCameraButton.setOnClickListener {
             val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
             startActivityForResult(cameraIntent, openCameraButtonRequestId)
+        }
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+        if (requestCode == openCameraButtonRequestId) {
+            if (resultCode == Activity.RESULT_OK) {
+                val imageData = data!!.extras!!.get("data") as Bitmap
+                imageView.setImageBitmap(imageData)
+            }
         }
     }
 
