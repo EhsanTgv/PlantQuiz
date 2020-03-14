@@ -6,6 +6,7 @@ import android.graphics.Bitmap
 import android.os.AsyncTask
 import android.os.Bundle
 import android.provider.MediaStore
+import android.util.Log
 import android.view.View
 import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
@@ -21,9 +22,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
-
-        val downloadingObject =DownloadingObject()
-        downloadingObject.downloadJSONDataFrom("http://plantplaces.com/perl/mobile/flashcard.pl")
 
         openCameraButton.setOnClickListener {
             val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
@@ -79,6 +77,11 @@ class MainActivity : AppCompatActivity() {
         }
 
         override fun doInBackground(vararg params: String?): List<Plant>? {
+            val downloadingObject = DownloadingObject()
+            val jsonData =
+                downloadingObject.downloadJSONDataFrom("http://plantplaces.com/perl/mobile/flashcard.pl")
+            Log.i("JsonData", jsonData)
+
             return null
         }
 
