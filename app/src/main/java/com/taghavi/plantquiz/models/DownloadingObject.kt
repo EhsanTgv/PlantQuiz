@@ -1,4 +1,4 @@
-package com.taghavi.plantquiz
+package com.taghavi.plantquiz.models
 
 import java.io.BufferedInputStream
 import java.io.BufferedReader

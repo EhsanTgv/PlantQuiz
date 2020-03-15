@@ -1,4 +1,4 @@
-package com.taghavi.plantquiz
+package com.taghavi.plantquiz.controllers
 
 import android.app.Activity
 import android.content.Intent
@@ -9,6 +9,9 @@ import android.provider.MediaStore
 import android.util.Log
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import com.taghavi.plantquiz.models.DownloadingObject
+import com.taghavi.plantquiz.models.Plant
+import com.taghavi.plantquiz.R
 
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
@@ -79,7 +82,8 @@ class MainActivity : AppCompatActivity() {
         }
 
         override fun doInBackground(vararg params: String?): List<Plant>? {
-            val downloadingObject = DownloadingObject()
+            val downloadingObject =
+                DownloadingObject()
             val jsonData =
                 downloadingObject.downloadJSONDataFrom("http://plantplaces.com/perl/mobile/flashcard.pl")
             Log.i("JsonData", jsonData)

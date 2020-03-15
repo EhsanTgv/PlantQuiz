@@ -1,4 +1,4 @@
-package com.taghavi.plantquiz
+package com.taghavi.plantquiz.models
 
 class Plant(
     genus: String,
