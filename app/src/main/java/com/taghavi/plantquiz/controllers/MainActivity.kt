@@ -1,6 +1,7 @@
 package com.taghavi.plantquiz.controllers
 
 import android.app.Activity
+import android.app.AlertDialog
 import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
@@ -8,8 +9,10 @@ import android.net.ConnectivityManager
 import android.os.AsyncTask
 import android.os.Bundle
 import android.provider.MediaStore
+import android.provider.Settings
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.taghavi.plantquiz.models.DownloadingObject
 import com.taghavi.plantquiz.models.Plant
@@ -78,7 +81,7 @@ class MainActivity : AppCompatActivity() {
 
     }
 
-    fun checkInternetConnection(): Boolean {
+    private fun checkInternetConnection(): Boolean {
         val connectivityManager =
             this.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
         val networkInfo = connectivityManager.activeNetworkInfo
@@ -86,8 +89,26 @@ class MainActivity : AppCompatActivity() {
         return if (isDeviceConnectedToInternet) {
             true
         } else {
+            internetAlertDialog()
             false
         }
+    }
+
+    private fun internetAlertDialog() {
+        val alertDialog = AlertDialog.Builder(this).create()
+        alertDialog.setTitle("Network Error")
+        alertDialog.setMessage("Please check for internet connection")
+
+        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "OK") { dialog, wich ->
+            startActivity(Intent(Settings.ACTION_SETTINGS))
+        }
+
+        alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "Cancel") { dialog, wich ->
+            Toast.makeText(this, "You must be connected to the internet", Toast.LENGTH_SHORT).show()
+            finish()
+        }
+
+        alertDialog.show()
     }
 
     inner class DownloadingPlantTask : AsyncTask<String, Int, List<Plant>>() {
