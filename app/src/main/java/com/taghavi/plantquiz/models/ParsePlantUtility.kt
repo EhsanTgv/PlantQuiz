@@ -11,6 +11,25 @@ class ParsePlantUtility {
         val topLevelJsonObject = JSONObject(topLevelPlantJsonData)
         val plantObjectArray = topLevelJsonObject.getJSONArray("values")
 
+        var index = 0
+
+        while (index < plantObjectArray.length()) {
+            val plantObject = Plant()
+            val jsonObject = plantObjectArray.getJSONObject(index)
+
+            with(jsonObject) {
+                plantObject.genus = getString("genus")
+                plantObject.species = getString("species")
+                plantObject.cultivar = getString("cultivar")
+                plantObject.common = getString("common")
+                plantObject.pictureName = getString("picture_name")
+                plantObject.description = getString("description")
+                plantObject.difficulty = getInt("difficulty")
+                plantObject.id = getInt("id")
+            }
+
+            index++
+        }
         return allPlantsObject
     }
 }
