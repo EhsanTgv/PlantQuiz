@@ -1,8 +1,10 @@
 package com.taghavi.plantquiz.controllers
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.graphics.Bitmap
+import android.net.ConnectivityManager
 import android.os.AsyncTask
 import android.os.Bundle
 import android.provider.MediaStore
@@ -74,6 +76,18 @@ class MainActivity : AppCompatActivity() {
 
     fun buttonFourIsClicked(view: View) {
 
+    }
+
+    fun checkInternetConnection(): Boolean {
+        val connectivityManager =
+            this.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+        val networkInfo = connectivityManager.activeNetworkInfo
+        val isDeviceConnectedToInternet = networkInfo != null && networkInfo.isConnectedOrConnecting
+        return if (isDeviceConnectedToInternet) {
+            true
+        } else {
+            false
+        }
     }
 
     inner class DownloadingPlantTask : AsyncTask<String, Int, List<Plant>>() {
