@@ -7,7 +7,7 @@ class ParsePlantUtility {
         val allPlantsObject: ArrayList<Plant> = ArrayList()
         val downloadingObject = DownloadingObject()
         val topLevelPlantJsonData =
-            DownloadingObject().downloadJSONDataFrom("http://plantplaces.com/perl/mobile/flashcard.pl")
+            downloadingObject.downloadJSONDataFrom("http://plantplaces.com/perl/mobile/flashcard.pl")
         val topLevelJsonObject = JSONObject(topLevelPlantJsonData)
         val plantObjectArray = topLevelJsonObject.getJSONArray("values")
 
@@ -27,6 +27,8 @@ class ParsePlantUtility {
                 plantObject.difficulty = getInt("difficulty")
                 plantObject.id = getInt("id")
             }
+
+            allPlantsObject.add(plantObject)
 
             index++
         }
