@@ -3,7 +3,7 @@ package com.taghavi.plantquiz.models
 import org.json.JSONObject
 
 class ParsePlantUtility {
-    fun parsePlantObjectsFromJsonData(search: String): List<Plant> {
+    fun parsePlantObjectsFromJsonData(): List<Plant> {
         val allPlantsObject: ArrayList<Plant> = ArrayList()
         val downloadingObject = DownloadingObject()
         val topLevelPlantJsonData =

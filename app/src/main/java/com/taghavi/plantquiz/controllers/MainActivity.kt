@@ -17,6 +17,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.taghavi.plantquiz.models.DownloadingObject
 import com.taghavi.plantquiz.models.Plant
 import com.taghavi.plantquiz.R
+import com.taghavi.plantquiz.models.ParsePlantUtility
 
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
@@ -124,13 +125,13 @@ class MainActivity : AppCompatActivity() {
         }
 
         override fun doInBackground(vararg params: String?): List<Plant>? {
-            val downloadingObject =
-                DownloadingObject()
-            val jsonData =
-                downloadingObject.downloadJSONDataFrom("http://plantplaces.com/perl/mobile/flashcard.pl")
-            Log.i("JsonData", jsonData)
+//            val downloadingObject = DownloadingObject()
+//            val jsonData =
+//                downloadingObject.downloadJSONDataFrom("http://plantplaces.com/perl/mobile/flashcard.pl")
+//            Log.i("JsonData", jsonData)
+            val parsePlant = ParsePlantUtility()
 
-            return null
+            return parsePlant.parsePlantObjectsFromJsonData()
         }
 
         override fun onPostExecute(result: List<Plant>?) {
