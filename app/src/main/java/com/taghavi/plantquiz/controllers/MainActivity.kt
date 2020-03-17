@@ -136,6 +136,15 @@ class MainActivity : AppCompatActivity() {
 
         override fun onPostExecute(result: List<Plant>?) {
             super.onPostExecute(result)
+
+            val numberOfPlants = result?.size ?: 0
+
+            if (numberOfPlants > 0) {
+                var randomPlantIndexForButton1: Int = (Math.random() * result!!.size).toInt()
+                var randomPlantIndexForButton2: Int = (Math.random() * result.size).toInt()
+                var randomPlantIndexForButton3: Int = (Math.random() * result.size).toInt()
+                var randomPlantIndexForButton4: Int = (Math.random() * result.size).toInt()
+            }
         }
     }
 }
