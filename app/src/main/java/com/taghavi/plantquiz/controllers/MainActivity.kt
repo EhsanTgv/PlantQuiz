@@ -140,10 +140,21 @@ class MainActivity : AppCompatActivity() {
             val numberOfPlants = result?.size ?: 0
 
             if (numberOfPlants > 0) {
-                var randomPlantIndexForButton1: Int = (Math.random() * result!!.size).toInt()
-                var randomPlantIndexForButton2: Int = (Math.random() * result.size).toInt()
-                var randomPlantIndexForButton3: Int = (Math.random() * result.size).toInt()
-                var randomPlantIndexForButton4: Int = (Math.random() * result.size).toInt()
+                val randomPlantIndexForButton1: Int = (Math.random() * result!!.size).toInt()
+                val randomPlantIndexForButton2: Int = (Math.random() * result.size).toInt()
+                val randomPlantIndexForButton3: Int = (Math.random() * result.size).toInt()
+                val randomPlantIndexForButton4: Int = (Math.random() * result.size).toInt()
+
+                val allRandomPlants = ArrayList<Plant>()
+                allRandomPlants.add(result[randomPlantIndexForButton1])
+                allRandomPlants.add(result[randomPlantIndexForButton2])
+                allRandomPlants.add(result[randomPlantIndexForButton3])
+                allRandomPlants.add(result[randomPlantIndexForButton4])
+
+                button1.text = result[randomPlantIndexForButton1].toString()
+                button2.text = result[randomPlantIndexForButton2].toString()
+                button3.text = result[randomPlantIndexForButton3].toString()
+                button4.text = result[randomPlantIndexForButton4].toString()
             }
         }
     }
