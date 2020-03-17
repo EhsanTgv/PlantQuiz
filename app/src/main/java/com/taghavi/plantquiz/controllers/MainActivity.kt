@@ -30,8 +30,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
 
-        val downloadingPlantTask = DownloadingPlantTask()
-        downloadingPlantTask.execute()
+        if (checkInternetConnection()) {
+            val downloadingPlantTask = DownloadingPlantTask()
+            downloadingPlantTask.execute()
+        }
 
         openCameraButton.setOnClickListener {
             val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
